@@ -13,7 +13,7 @@ print(torch.cuda.is_available())
 device = torch.device("cpu")
 
 # Configure Google Gemini AI API
-genai.configure(api_key='AIzaSyATgL92t9qBCe4eqFX1cSfyfkzKMooQM48')
+genai.configure(api_key='ADD Your API Key')
 
 generation_config = {
     "temperature": 1,
