@@ -14,7 +14,7 @@ device = torch.device("cpu")
 # genai.configure(api_key='AIzaSyATgL92t9qBCe4eqFX1cSfyfkzKMooQM48')
 # model = genai.GenerativeModel('gemini-2.0-flash')
 
-genai.configure(api_key='AIzaSyATgL92t9qBCe4eqFX1cSfyfkzKMooQM48')
+genai.configure(api_key='ADD YOUR API KEY')
 
 generation_config = {
     "temperature": 1,
