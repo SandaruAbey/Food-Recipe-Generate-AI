@@ -1,0 +1,38 @@
+#use Google Colab for training.
+
+!pip install roboflow ultralytics opencv-python
+!pip install torch torchvision
+# Training script for YOLOv8 model
+from ultralytics import YOLO
+import yaml
+import torch
+from roboflow import Roboflow
+
+# Download dataset
+
+from roboflow import Roboflow
+rf = Roboflow(api_key="9B6cj89t8J15DA1a7rne")
+project = rf.workspace("steph-r3xmc").project("combined-dataset-3n32l")
+version = project.version(5)
+dataset = version.download("yolov8")
+
+
+# Load a model
+model = YOLO('yolov8n.pt')
+# Train the model with custom dataset
+results = model.train(
+    data='/content/Combined-dataset-5/data.yaml',  # path to data.yaml file
+    epochs=5,               # number of epochs
+    batch=16,                # batch size
+    imgsz=640,              # image size
+    device= 'cuda' if torch.cuda.is_available() else 'cpu',           # cuda device (GPU)
+    project='food_detection',# project name
+    name='train1'           # experiment name
+)
+
+# Validate the model
+print('start validation')
+results = model.val()
+
+# Export the model
+model.export(format='onnx')
